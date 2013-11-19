@@ -1,6 +1,23 @@
 #include <iostream>
 #include <string>
 
+class grade
+{
+public:
+    grade(int score) {
+        if (score >= 90) { _desc = "A"; }
+        else if (score >= 80) { _desc = "B"; }
+        else if (score >= 70) { _desc = "C"; }
+        else if (score >= 60) { _desc = "D"; }
+        else { _desc = "F"; }
+    }
+    void print(std::ostream& ostream) const {
+        ostream << "you scored: " << _desc << "!" << std::endl;
+    }
+private:
+    std::string _desc;
+};
+
 int main(int argc, char** argv)
 {
     if (argc != 2) {
@@ -15,20 +32,8 @@ int main(int argc, char** argv)
         std::cout << "lexical cast failed: " << e.what() << std::endl;
         return 1;
     }
-    if (score == 100) {
-        std::cout << "you have a perfect score!" << std::endl;
-    }
-    if (score >= 90 && score <= 100) {
-        std::cout << "you scored an A!" << std::endl;
-    } else if (score >= 80 && score <= 89) {
-        std::cout << "you scored an B!" << std::endl;
-    } else if (score >= 70 && score <= 79) {
-        std::cout << "you scored an C!" << std::endl;
-    } else if (score >= 60 && score <= 69) {
-        std::cout << "you scored an D!" << std::endl;
-    } else if (score >= 0 && score <= 59) {
-        std::cout << "you scored an F! Learn idiot" << std::endl;
-    }
+    grade gr(score);
+    gr.print(std::cout);
     return 0;
 }
 
