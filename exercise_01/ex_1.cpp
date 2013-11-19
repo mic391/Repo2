@@ -5,11 +5,11 @@ class grade
 {
 public:
     grade(int score) {
-        if(score >= 90) _desc = "A";
-        else if(score >= 80) _desc = "B";
-        else if(score >= 70) _desc = "C";
-        else if(score >= 60) _desc = "D";
-        else _desc = "F";
+        if (score >= 90) { _desc = "A"; }
+        else if (score >= 80) { _desc = "B"; }
+        else if (score >= 70) { _desc = "C"; }
+        else if (score >= 60) { _desc = "D"; }
+        else { _desc = "F"; }
     }
     void print(std::ostream& ostream) const {
         ostream << "you scored: " << _desc << "!" << std::endl;
