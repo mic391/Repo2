@@ -7,8 +7,14 @@ int main(int argc, char** argv)
         std::cout << "Give one score!" << std::endl;
         return 1;
     }
-    // string to int conversion: std::stoi is in c++11
-    int score = std::stoi(std::string(argv[1]));
+    int score = 0;
+    try {
+        // string to int conversion: std::stoi is in c++11
+        score = std::stoi(std::string(argv[1]));
+    } catch (std::exception& e) {
+        std::cout << "lexical cast failed: " << e.what() << std::endl;
+        return 1;
+    }
     if (score == 100) {
         std::cout << "you have a perfect score!" << std::endl;
     }
