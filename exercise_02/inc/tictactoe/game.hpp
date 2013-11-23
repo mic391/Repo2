@@ -30,16 +30,19 @@ public:
   void putX(std::size_t row, std::size_t col) { putMark('X', row, col); }
   void putY(std::size_t row, std::size_t col) { putMark('Y', row, col); }
 private:
-  bool isTaken(std::size_t row, std::size_t col) {
+  bool isTaken(std::size_t row, std::size_t col) const {
     return spaceInGrid(row, col) != ' ';
   }
-  bool isOutsideGrid(std::size_t row, std::size_t col) {
+  bool isOutsideGrid(std::size_t row, std::size_t col) const {
     return row >= 3 || col >= 3;
   }
   void putMark(char player, std::size_t row, std::size_t col) {
     if (isOutsideGrid(row, col)) { throw MarkOutsideGrid(); }
     if (isTaken(row, col)) { throw SpaceAlreadyTaken(); }
     spaceInGrid(row, col) = player;
+  }
+  char spaceInGrid(std::size_t row, std::size_t col) const {
+    return grid_[row * 3 + col];
   }
   char& spaceInGrid(std::size_t row, std::size_t col) {
     return grid_[row * 3 + col];
