@@ -7,12 +7,6 @@ protected:
   tictactoe::Game game;
 };
 
-TEST_F(TicTacToeTest, canPutXorY)
-{
-  game.putX(0, 0);
-  game.putY(1, 1);
-}
-
 TEST_F(TicTacToeTest, cannotPutXorYInSameSpace)
 {
   EXPECT_NO_THROW(game.putX(0, 0));

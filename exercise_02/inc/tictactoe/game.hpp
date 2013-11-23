@@ -19,15 +19,19 @@ class Game
 {
 public:
   Game(): grid_(9, ' ') {}
-  void putX(std::size_t row, std::size_t col) {
-    if (grid_[row * 3 + col] == ' ') { grid_[row * 3 + col] = 'X'; }
-    else { throw SpaceAlreadyTaken(); }
-  }
-  void putY(std::size_t row, std::size_t col) {
-    if (grid_[row * 3 + col] == ' ') { grid_[row * 3 + col] = 'Y'; }
-    else { throw SpaceAlreadyTaken(); }
+  void putX(std::size_t row, std::size_t col) { putMark('X', row, col); }
+  void putY(std::size_t row, std::size_t col) { putMark('Y', row, col); }
+  bool isTaken(std::size_t row, std::size_t col) {
+    return spaceInGrid(row, col) != ' ';
   }
 private:
+  void putMark(char player, std::size_t row, std::size_t col) {
+    if (isTaken(row, col)) { throw SpaceAlreadyTaken(); }
+    spaceInGrid(row, col) = player;
+  }
+  char& spaceInGrid(std::size_t row, std::size_t col) {
+    return grid_[row * 3 + col];
+  }
   std::string grid_;
 };
 
