@@ -10,6 +10,14 @@ protected:
 TEST_F(TicTacToeTest, canPutXorY)
 {
   game.putX(0, 0);
-  game.putY(0, 0);
+  game.putY(1, 1);
+}
+
+TEST_F(TicTacToeTest, cannotPutXorYInSameSpace)
+{
+  EXPECT_NO_THROW(game.putX(0, 0));
+  EXPECT_THROW(game.putY(0, 0), tictactoe::SpaceAlreadyTaken);
+  EXPECT_THROW(game.putX(0, 0), tictactoe::SpaceAlreadyTaken);
+  EXPECT_NO_THROW(game.putY(1, 1));
 }
 
