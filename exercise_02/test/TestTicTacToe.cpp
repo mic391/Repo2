@@ -11,3 +11,10 @@ TEST_F(TicTacToeTest, canCreateTicTacToeGame)
   (void)game;
 }
 
+TEST_F(TicTacToeTest, canPutXorY)
+{
+  tictactoe::Game game;
+  game.putX(0, 0);
+  game.putY(0, 0);
+}
+
