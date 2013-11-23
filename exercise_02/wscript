@@ -10,6 +10,7 @@ def configure(conf):
 def build(bld):
     bld.program(
         features  = ['cxx', 'cxxprogram'],
+        includes  = bld.path.find_dir('inc').abspath(),
         source    = bld.path.ant_glob('src/*.cpp'),
         target    = 'TicTacToe',
         cxxflags  = ['-g', '-O0', '-Wall', '-Werror', '-std=c++11'],
@@ -23,6 +24,7 @@ class Test(BuildContext):
 def test(test):
     test.program(
         features  = ['cxx', 'cxxprogram', 'test'],
+        includes  = test.path.find_dir('inc').abspath(),
         source    = test.path.ant_glob('test/*.cpp'),
         target    = 'unittest',
         cxxflags  = ['-g', '-O0', '-Wall', '-Werror', '-std=c++11'],
