@@ -34,7 +34,8 @@ public:
 private:
   bool isPlayerWinner(char player) const {
     return hasWinningRow(player)
-           || hasWinningColumn(player);
+           || hasWinningColumn(player)
+           || hasWinningDiagonal(player);
   }
   bool isTaken(std::size_t row, std::size_t col) const {
     return spaceInGrid(row, col) != ' ';
@@ -51,6 +52,11 @@ private:
     return hasThreeMarksInColumn(player, 0)
            || hasThreeMarksInColumn(player, 1)
            || hasThreeMarksInColumn(player, 2);
+  }
+  bool hasWinningDiagonal(char player) const {
+    return player == spaceInGrid(1, 1)
+           && ((player == spaceInGrid(0, 0) && player == spaceInGrid(2, 2))
+               || (player == spaceInGrid(0, 2) && player == spaceInGrid(2, 0)));
   }
   bool hasThreeMarksInRow(char mark, std::size_t row) const {
     return mark == spaceInGrid(row, 0)

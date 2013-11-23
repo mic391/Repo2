@@ -66,3 +66,19 @@ TEST_F(TicTacToeTest, threeMarksInAColumnWins)
   game->putX(2, 0);
   EXPECT_TRUE(game->isXWinner());
 }
+
+TEST_F(TicTacToeTest, threeMarksDiagonalWins)
+{
+  EXPECT_FALSE(game->isXWinner());
+  EXPECT_FALSE(game->isOWinner());
+  game->putX(0, 0);
+  EXPECT_FALSE(game->isXWinner());
+  game->putO(0, 1);
+  EXPECT_FALSE(game->isOWinner());
+  game->putX(1, 1);
+  EXPECT_FALSE(game->isXWinner());
+  game->putO(1, 2);
+  EXPECT_FALSE(game->isOWinner());
+  game->putX(2, 2);
+  EXPECT_TRUE(game->isXWinner());
+}
