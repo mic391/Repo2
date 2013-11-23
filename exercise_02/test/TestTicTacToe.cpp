@@ -49,6 +49,20 @@ TEST_F(TicTacToeTest, threeMarksInARowWins)
   EXPECT_FALSE(game->isYWinner());
   game->putX(0, 2);
   EXPECT_TRUE(game->isXWinner());
-  game->putY(1, 2);
-  EXPECT_TRUE(game->isYWinner()); // actually Y is not a winner cause X already was
+}
+
+TEST_F(TicTacToeTest, threeMarksInAColumnWins)
+{
+  EXPECT_FALSE(game->isXWinner());
+  EXPECT_FALSE(game->isYWinner());
+  game->putX(0, 0);
+  EXPECT_FALSE(game->isXWinner());
+  game->putY(0, 1);
+  EXPECT_FALSE(game->isYWinner());
+  game->putX(1, 0);
+  EXPECT_FALSE(game->isXWinner());
+  game->putY(1, 1);
+  EXPECT_FALSE(game->isYWinner());
+  game->putX(2, 0);
+  EXPECT_TRUE(game->isXWinner());
 }

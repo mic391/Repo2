@@ -33,9 +33,8 @@ public:
   bool isYWinner() const { return isPlayerWinner('Y'); }
 private:
   bool isPlayerWinner(char player) const {
-    return hasThreeMarksInRow(player, 0)
-           || hasThreeMarksInRow(player, 1)
-           || hasThreeMarksInRow(player, 2);
+    return hasWinningRow(player)
+           || hasWinningColumn(player);
   }
   bool isTaken(std::size_t row, std::size_t col) const {
     return spaceInGrid(row, col) != ' ';
@@ -43,10 +42,25 @@ private:
   bool isOutsideGrid(std::size_t row, std::size_t col) const {
     return row >= 3 || col >= 3;
   }
+  bool hasWinningRow(char player) const {
+    return hasThreeMarksInRow(player, 0)
+           || hasThreeMarksInRow(player, 1)
+           || hasThreeMarksInRow(player, 2);
+  }
+  bool hasWinningColumn(char player) const {
+    return hasThreeMarksInColumn(player, 0)
+           || hasThreeMarksInColumn(player, 1)
+           || hasThreeMarksInColumn(player, 2);
+  }
   bool hasThreeMarksInRow(char mark, std::size_t row) const {
     return mark == spaceInGrid(row, 0)
            && mark == spaceInGrid(row, 1)
            && mark == spaceInGrid(row, 2);
+  }
+  bool hasThreeMarksInColumn(char mark, std::size_t col) const {
+    return mark == spaceInGrid(0, col)
+           && mark == spaceInGrid(1, col)
+           && mark == spaceInGrid(2, col);
   }
 
   void putMark(char player, std::size_t row, std::size_t col) {
