@@ -16,3 +16,6 @@ Make a two player tic tac toe game. // tic tac toe to kolko i krzyzyk
 
 
 Build command: make
+Waf build command:
+    $ ./waf configure
+    $ ./waf build

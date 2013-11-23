@@ -18,7 +18,7 @@ class TicTacToeArray
 public:
   TicTacToeArray(): array(nRows* nCols, (char)None) {}
   void print(std::ostream& stream) {
-    for (int i = 0; i < nRows; ++i) {
+    for (std::size_t i = 0; i < nRows; ++i) {
       stream << array.substr(i * nCols, nCols) << std::endl;
     }
   }
