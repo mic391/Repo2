@@ -29,13 +29,26 @@ public:
   Game(): grid_(9, ' ') {}
   void putX(std::size_t row, std::size_t col) { putMark('X', row, col); }
   void putY(std::size_t row, std::size_t col) { putMark('Y', row, col); }
+  bool isXWinner() const { return isPlayerWinner('X'); }
+  bool isYWinner() const { return isPlayerWinner('Y'); }
 private:
+  bool isPlayerWinner(char player) const {
+    return hasThreeMarksInRow(player, 0)
+           || hasThreeMarksInRow(player, 1)
+           || hasThreeMarksInRow(player, 2);
+  }
   bool isTaken(std::size_t row, std::size_t col) const {
     return spaceInGrid(row, col) != ' ';
   }
   bool isOutsideGrid(std::size_t row, std::size_t col) const {
     return row >= 3 || col >= 3;
   }
+  bool hasThreeMarksInRow(char mark, std::size_t row) const {
+    return mark == spaceInGrid(row, 0)
+           && mark == spaceInGrid(row, 1)
+           && mark == spaceInGrid(row, 2);
+  }
+
   void putMark(char player, std::size_t row, std::size_t col) {
     if (isOutsideGrid(row, col)) { throw MarkOutsideGrid(); }
     if (isTaken(row, col)) { throw SpaceAlreadyTaken(); }
@@ -47,6 +60,7 @@ private:
   char& spaceInGrid(std::size_t row, std::size_t col) {
     return grid_[row * 3 + col];
   }
+
   std::string grid_;
 };
 

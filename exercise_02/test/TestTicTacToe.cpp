@@ -34,3 +34,21 @@ TEST_F(TicTacToeTest, cannotPutXorYOutsideOfGrid)
   EXPECT_THROW(game->putY(3, 0), tictactoe::MarkOutsideGrid);
   EXPECT_THROW(game->putX(3, 3), tictactoe::MarkOutsideGrid);
 }
+
+TEST_F(TicTacToeTest, threeMarksInARowWins)
+{
+  EXPECT_FALSE(game->isXWinner());
+  EXPECT_FALSE(game->isYWinner());
+  game->putX(0, 0);
+  EXPECT_FALSE(game->isXWinner());
+  game->putY(1, 0);
+  EXPECT_FALSE(game->isYWinner());
+  game->putX(0, 1);
+  EXPECT_FALSE(game->isXWinner());
+  game->putY(1, 1);
+  EXPECT_FALSE(game->isYWinner());
+  game->putX(0, 2);
+  EXPECT_TRUE(game->isXWinner());
+  game->putY(1, 2);
+  EXPECT_TRUE(game->isYWinner()); // actually Y is not a winner cause X already was
+}
