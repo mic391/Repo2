@@ -3,17 +3,12 @@
 
 class TicTacToeTest : public testing::Test
 {
-};
-
-TEST_F(TicTacToeTest, canCreateTicTacToeGame)
-{
+protected:
   tictactoe::Game game;
-  (void)game;
-}
+};
 
 TEST_F(TicTacToeTest, canPutXorY)
 {
-  tictactoe::Game game;
   game.putX(0, 0);
   game.putY(0, 0);
 }
