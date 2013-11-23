@@ -28,9 +28,9 @@ class Game
 public:
   Game(): grid_(9, ' ') {}
   void putX(std::size_t row, std::size_t col) { putMark('X', row, col); }
-  void putY(std::size_t row, std::size_t col) { putMark('Y', row, col); }
+  void putO(std::size_t row, std::size_t col) { putMark('O', row, col); }
   bool isXWinner() const { return isPlayerWinner('X'); }
-  bool isYWinner() const { return isPlayerWinner('Y'); }
+  bool isOWinner() const { return isPlayerWinner('O'); }
 private:
   bool isPlayerWinner(char player) const {
     return hasWinningRow(player)
