@@ -23,10 +23,10 @@ public:
   }
 };
 
-class Game
+class Grid
 {
 public:
-  Game(): grid_(9, ' ') {}
+  Grid(): buffer_(9, ' ') {}
   void putX(std::size_t row, std::size_t col) { putMark('X', row, col); }
   void putO(std::size_t row, std::size_t col) { putMark('O', row, col); }
   bool isXWinner() const { return isPlayerWinner('X'); }
@@ -75,13 +75,13 @@ private:
     spaceInGrid(row, col) = player;
   }
   char spaceInGrid(std::size_t row, std::size_t col) const {
-    return grid_[row * 3 + col];
+    return buffer_[row * 3 + col];
   }
   char& spaceInGrid(std::size_t row, std::size_t col) {
-    return grid_[row * 3 + col];
+    return buffer_[row * 3 + col];
   }
 
-  std::string grid_;
+  std::string buffer_;
 };
 
 }
