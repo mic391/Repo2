@@ -15,17 +15,29 @@ public:
   }
 };
 
+class MarkOutsideGrid: public std::exception
+{
+public:
+  virtual const char* what() const noexcept {
+    return "Mark outside grid!";
+  }
+};
+
 class Game
 {
 public:
   Game(): grid_(9, ' ') {}
   void putX(std::size_t row, std::size_t col) { putMark('X', row, col); }
   void putY(std::size_t row, std::size_t col) { putMark('Y', row, col); }
+private:
   bool isTaken(std::size_t row, std::size_t col) {
     return spaceInGrid(row, col) != ' ';
   }
-private:
+  bool isOutsideGrid(std::size_t row, std::size_t col) {
+    return row >= 3 || col >= 3;
+  }
   void putMark(char player, std::size_t row, std::size_t col) {
+    if (isOutsideGrid(row, col)) { throw MarkOutsideGrid(); }
     if (isTaken(row, col)) { throw SpaceAlreadyTaken(); }
     spaceInGrid(row, col) = player;
   }
