@@ -19,3 +19,6 @@ Build command: make
 Waf build command:
     $ ./waf configure
     $ ./waf build
+or
+    $ ./waf configure
+    $ ./waf test
